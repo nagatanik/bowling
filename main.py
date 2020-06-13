@@ -17,7 +17,7 @@ while i < n_throws:
     else:
         if beat_1st == n_pins:
             # strike
-            score_frame = sum(list_beats[i:i+3])
+            score_frame = sum(list_beats[i:min(n_throws, i+3)])
             scores.append(score_frame)
             i += 1
         else:
@@ -25,7 +25,8 @@ while i < n_throws:
             score_frame = beat_1st + beat_2nd
             if score_frame == n_pins:
                 # spare
-                score_frame += list_beats[i+2]
+                if i+2 < n_throws:
+                    score_frame += list_beats[i+2]
             
             scores.append(score_frame)
             i += 2
